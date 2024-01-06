@@ -1,4 +1,4 @@
-itemid,name,sell01,buy01,price01,stock01,sell12,buy12,price12,stock12
+itemid,name,sell_single,buy_single,price_single,stock_single,sell_stacks,buy_stacks,price_stacks,stock_stacks
 4376,meat-jerky,0,0,175,0,1,0,2000,30
 5721,crab-sushi,0,0,500,0,1,0,6000,30
 4271,rice-dumpling,0,0,1000,0,1,0,12000,30

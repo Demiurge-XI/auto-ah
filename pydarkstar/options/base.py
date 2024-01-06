@@ -42,12 +42,14 @@ class BaseOptions(DarkObject, metaclass=MetaOptions):
         self._parse_args(args=remaining_args)
 
     def _parse_known_args(self, args=None):
+        # noinspection PyTypeChecker
         return self._parent.parse_known_args(args, namespace=self)
 
     def _parse_config(self):
         self.load()
         self._parser.set_defaults(**self.dict())
 
+    # noinspection PyTypeChecker
     def _parse_args(self, args=None):
         self._parser.parse_args(args, namespace=self)
 
@@ -104,11 +106,11 @@ class BaseOptions(DarkObject, metaclass=MetaOptions):
 
             self.debug('load %s', self.config)
             with open(self.config, 'rb') as handle:
-                data = yaml.load(handle)
+                data = yaml.safe_load(handle)
 
         else:
             self.debug('load %s', stream)
-            data = yaml.load(stream, **kwargs)
+            data = yaml.safe_load(stream, **kwargs)
 
         if data is None:
             return
@@ -151,7 +153,10 @@ class BaseOptions(DarkObject, metaclass=MetaOptions):
                     warnings.warn('key={} is {}, expecting {}'.format(
                         k, type(v).__name__, t.__name__))
 
-                self[k] = t(v)
+                if k in {'server'}:
+                    self[k] = v
+                else:
+                    self[k] = t(v)
 
     def dict(self):
         """

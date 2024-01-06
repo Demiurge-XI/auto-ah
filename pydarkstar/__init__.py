@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-__version__ = 0.1
+__version__ = "0.0.0"
 
 from . import logutils
 import logging
@@ -39,10 +39,17 @@ except ImportError as e:
     yaml = None
     exit(-1)
 
+# noinspection PyPep8
 from . import common
+# noinspection PyPep8
 from . import darkobject
+# noinspection PyPep8
 from . import database
+# noinspection PyPep8
 from . import item
+# noinspection PyPep8
 from . import itemlist
+# noinspection PyPep8
 from . import options
+# noinspection PyPep8
 from . import timeutils
